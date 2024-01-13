@@ -1,0 +1,77 @@
+.container {
+  background: red;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-details {
+  /* background-color: transparent; */
+  background-color: lightslategrey;
+  width: 35vw;
+  height: 85vh;
+  border-radius: 8px;
+  box-shadow: -15px 15px 25px rgb(217, 236, 236);
+  margin: 20px 100px;
+  padding: 10px 70px;
+  overflow-y: scroll;
+}
+
+.heading {
+  display: flex;
+  justify-content: center;
+}
+.heading h3 {
+  font-size: 25px;
+}
+
+.form-details:hover {
+  background-color: lightslategrey;
+  box-shadow: -15px 15px 25px darkslategrey;
+}
+
+.container form input {
+  width: 27vw;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  font-size: 17px;
+  border: none;
+  box-shadow: -5px 6px 5px rgb(169, 169, 238);
+  padding: 10px 20px;
+  border-radius: 7px;
+  margin-top: 10px;
+}
+
+.container form input:focus {
+  outline: 1px solid transparent !important;
+  box-shadow: -2px 6px 8px rgb(151, 151, 241);
+  /* padding: 8px 14px; */
+  border: none;
+  border-radius: 6px;
+}
+
+.form-input :focus {
+  outline: none !important;
+}
+
+.mb-3 {
+  margin-top: 36px;
+}
+
+.btn {
+  margin-left: 36px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: dodgerblue;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 15px;
+  border: 2px solid dodgerblue;
+  box-shadow: -2px 6px 8px rgb(151, 151, 241);
+  transition: all 0.1s ease;
+}

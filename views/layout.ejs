@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/signUp.css">
 
     <!-- link the favicon or logo  -->
-    <link rel="icon" href="/assests/img/title_logo.png">
+    <link rel="icon" href="/img/title_logo.png">
 
     <!-- Set the title dynamically using EJS variable 'title' -->
     <title>
@@ -19,11 +21,22 @@
     <!-- Include the header partial -->
     <%- include('_header'); %>
 
-        <!-- Inject the body content here (this is where your specific page content will be rendered) -->
-        <%- body %>
+        <!-- Flash messages container -->
+        <% if (locals.messages && locals.messages.length> 0) { %>
+            <div class="flash-messages">
+                <% locals.messages.forEach(function(message) { %>
+                    <div class="flash-message <%= message.type %>">
+                        <%= message.message %>
+                    </div>
+                    <% }); %>
+            </div>
+            <% } %>
 
-            <!-- Include the footer partial -->
-            <%- include('_footer'); %>
+                <!-- Inject the body content here (this is where your specific page content will be rendered) -->
+                <%- body %>
+
+                    <!-- Include the footer partial -->
+                    <%- include('_footer'); %>
 </body>
 
 </html>

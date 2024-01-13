@@ -3,20 +3,32 @@ const express = require('express');
 const app = express();
 const port = 8000;
 
-// Connect to MongoDB using Mongoose
+// const mongoose = require('./config/mongoose');
+const expressEjsLayouts = require('express-ejs-layouts');
+const expressSession = require('express-session');
+const connectFlash = require('connect-flash');
+
+const User = require('./model/user');
 const db = require('./config/mongoose');
 
+// Set up sessions and flash
+app.use(expressSession({
+    secret: 'secret', // Use a secure secret key in production
+    resave: false,
+    saveUninitialized: true
+}));
+app.use(connectFlash());
+
 // Set up EJS layouts middleware
-const expressEjsLayouts = require('express-ejs-layouts');
 app.use(expressEjsLayouts);
+
+app.use(express.static('./assets'));
+
+// reading the post request 
+app.use(express.urlencoded({ extended: true }));
 
 // Set up routes
 app.use('/', require('./routes'));
-
-// Uncomment the following block if you want a simple response at the root path
-// app.get('/', (req, res) => {
-//     res.send("<h1>Hello</h1>");
-// });
 
 // Configure view engine and views directory
 app.set('view engine', 'ejs');

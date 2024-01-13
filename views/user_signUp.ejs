@@ -1,1 +1,47 @@
-<h1>Sign Up</h1>
+<link rel="stylesheet" href="/css/signUp.css">
+
+<div class="container">
+    <form action="/users/create" method="post">
+        <div class="form-details">
+
+            <div class="heading">
+                <h3>Sign-up</h3>
+            </div>
+            <div class="mb-3">
+                <label for="name">Name</label>
+                <input type="text" name="name" class="form-input" id="user-name" placeholder="Enter your Name">
+            </div>
+
+            <div class="mb-3">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-input" id="user-email" placeholder="Enter your Email">
+            </div>
+
+            <div class="mb-3">
+                <label for="phone">Phone</label>
+                <input type="phone" name="phone" class="form-input" id="user-phone" placeholder="Enter your Phone">
+            </div>
+
+            <div class="mb-3">
+                <label for="age">Age</label>
+                <input type="text" name="age" class="form-input" id="user-age" placeholder="Enter your Age">
+            </div>
+            <div class="mb-3">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-input" id="user-password"
+                    placeholder="Enter your Password">
+            </div>
+            <div class="mb-3">
+                <label for="cPassword">Confirm Password</label>
+                <input type="password" name="cPassword" class="form-input" id="user-cPassword"
+                    placeholder="Enter your Confirm Password">
+            </div>
+            <div class="mb-3">
+                <label for="emergencyNumber">Emergency Number</label>
+                <input type="text" name="emergencyNumber" class="form-input" id="user-emergencyNumber"
+                    placeholder="Enter your Emergency Number">
+            </div>
+            <button class="btn">Sign Up</button>
+        </div>
+    </form>
+</div>

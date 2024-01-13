@@ -1,1 +1,22 @@
-<h1>sign In</h1>
+<div class="container">
+    <form action="/users/create-session" method="post">
+        <div class="form-details">
+
+            <div class="heading">
+                <h3>Sign-In</h3>
+            </div>
+            <div class="mb-3">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-input" id="user-email" placeholder="Enter your Email">
+            </div>
+
+            <div class="mb-3">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-input" id="user-password"
+                    placeholder="Enter your Password">
+            </div>
+
+            <button class="btn">Sign In</button>
+        </div>
+    </form>
+</div>
