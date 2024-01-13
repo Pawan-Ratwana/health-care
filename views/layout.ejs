@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- link the favicon or logo  -->
+    <link rel="icon" href="/assests/img/title_logo.png">
+
+    <!-- Set the title dynamically using EJS variable 'title' -->
+    <title>
+        <%=title%>
+    </title>
+</head>
+
+<body>
+    <!-- Include the header partial -->
+    <%- include('_header'); %>
+
+        <!-- Inject the body content here (this is where your specific page content will be rendered) -->
+        <%- body %>
+
+            <!-- Include the footer partial -->
+            <%- include('_footer'); %>
+</body>
+
+</html>
