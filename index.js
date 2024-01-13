@@ -10,7 +10,8 @@ app.use('/', require('./routes'))
 //     res.send("<h1>Hello</h1>")
 // })
 
-
+app.set('view engine', 'ejs');
+app.set('views', './views');
 
 
 app.listen(port, (err) => {
