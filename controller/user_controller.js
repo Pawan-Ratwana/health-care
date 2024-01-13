@@ -1,11 +1,36 @@
+// Controller method for user profile
 const User = require('../model/user');
 
 // Controller method for user profile
-module.exports.profile = (req, res) => {
-    return res.render('user_profile', {
-        title: "Profile"
-    });
+module.exports.profile = async (req, res) => {
+    try {
+        // check the user_id in cookies
+        if (req.cookies.user_id) {
+            // find the user
+            const user = await User.findById(req.cookies.user_id);
+
+            // if user is found then redirect to the profile
+            if (user) {
+                return res.render('user_profile', {
+                    title: "User Profile",
+                    user: user
+                });
+            }
+
+            // if user not found 
+            console.log("user not found");
+            return res.redirect('/users/sign-in');
+        } else {
+            // user is not in cookies
+            console.log("User not in cookies");
+            return res.redirect('/users/sign-in');
+        }
+    } catch (err) {
+        console.log("error finding user", err);
+        return res.redirect('/users/sign-in');
+    }
 };
+
 
 // Controller method for rendering the sign-up page
 module.exports.signUp = (req, res) => {
@@ -77,3 +102,9 @@ module.exports.createSession = async (req, res) => {
         return res.redirect('back');
     }
 };
+
+
+module.exports.signOut = (req, res) => {
+    res.clearCookie('user_id');
+    return res.redirect('/')
+}

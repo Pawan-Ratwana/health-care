@@ -10,6 +10,7 @@ const connectFlash = require('connect-flash');
 
 const User = require('./model/user');
 const db = require('./config/mongoose');
+const cookieParser = require('cookie-parser');
 
 // Set up sessions and flash
 app.use(expressSession({
@@ -23,6 +24,9 @@ app.use(connectFlash());
 app.use(expressEjsLayouts);
 
 app.use(express.static('./assets'));
+
+app.use(cookieParser());
+
 
 // reading the post request 
 app.use(express.urlencoded({ extended: true }));
