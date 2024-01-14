@@ -1,5 +1,5 @@
 .container {
-  background: red;
+  /* background: red; */
   height: 100vh;
   display: flex;
   align-items: center;
@@ -8,7 +8,7 @@
 
 .form-details {
   /* background-color: transparent; */
-  background-color: lightslategrey;
+  background-color: rgb(157, 203, 248);
   width: 35vw;
   height: 85vh;
   border-radius: 8px;
@@ -27,7 +27,7 @@
 }
 
 .form-details:hover {
-  background-color: lightslategrey;
+  background-color: rgb(126, 176, 226);
   box-shadow: -15px 15px 25px darkslategrey;
 }
 
@@ -59,6 +59,10 @@
 
 .mb-3 {
   margin-top: 36px;
+}
+
+.mb-3 a {
+  text-decoration: none;
 }
 
 .btn {

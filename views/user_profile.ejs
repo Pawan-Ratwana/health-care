@@ -1,3 +1,50 @@
-<h1>Welcome to the user profile</h1>
-<%=title%>
-    <%=user%>
+<main>
+    <section class="profile-section">
+        <h1>Welcome to the user profile</h1>
+        <div class="user-info">
+
+            <!-- Add more user information as needed -->
+        </div>
+    </section>
+
+    <section class="blood-pressure-section">
+        <form action="/users/submit-bp" method="post">
+            <div class="mb-3">
+                <label for="systolic">Systolic Pressure:</label>
+                <input type="number" name="systolic" required>
+            </div>
+            <div class="mb-3">
+                <label for="diastolic">Diastolic Pressure:</label>
+                <input type="number" name="diastolic" required>
+            </div>
+            <button type="submit" class="btn">Submit Blood Pressure</button>
+        </form>
+
+        <!-- Display Success Message -->
+        <% if (typeof successMessage !=='undefined' ) { %>
+            <div class="success-message">
+                <%= successMessage %>
+            </div>
+            <% } %>
+    </section>
+
+    <!-- Display Blood Pressure and Medicine Information -->
+    <% if (typeof bloodPressure !=='undefined' && typeof suggestedMedicine !=='undefined' ) { %>
+        <section class="blood-pressure-info">
+            <h2>Blood Pressure Information</h2>
+            <p>Systolic: <%= bloodPressure.systolic %>
+            </p>
+            <p>Diastolic: <%= bloodPressure.diastolic %>
+            </p>
+        </section>
+
+        <section class="medicine-info">
+            <h2>Suggested Medicine</h2>
+            <p>
+                <%= suggestedMedicine %>
+            </p>
+        </section>
+        <% } %>
+
+
+</main>

@@ -1,4 +1,19 @@
+<link rel="stylesheet" href="/css/header.css">
 <header>
+    <nav>
+        <div class="company-logo">
+            <a href="#"><img src="/img/main_logo.png" alt=""></a>
+        </div>
+        <div class="nav-links">
 
+            <% if(!user){ %>
+                <a href="/users/sign-up"> <button class="btn1">Sign Up</button></a>
+                <a href="/users/sign-in"> <button class="btn1">Sign In</button></a>
+                <% } else {%>
+                    <a href="/"> <button class="btn1">Home</button></a>
+                    <a href="/users/sign-out"> <button class="btn1">Sign out</button></a>
+                    <% } %>
+        </div>
+    </nav>
 
 </header>

@@ -7,6 +7,8 @@
 
     <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/signUp.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/profile.css">
 
     <!-- link the favicon or logo  -->
     <link rel="icon" href="/img/title_logo.png">
@@ -22,21 +24,10 @@
     <%- include('_header'); %>
 
         <!-- Flash messages container -->
-        <% if (locals.messages && locals.messages.length> 0) { %>
-            <div class="flash-messages">
-                <% locals.messages.forEach(function(message) { %>
-                    <div class="flash-message <%= message.type %>">
-                        <%= message.message %>
-                    </div>
-                    <% }); %>
-            </div>
-            <% } %>
 
-                <!-- Inject the body content here (this is where your specific page content will be rendered) -->
-                <%- body %>
+        <!-- Inject the body content here (this is where your specific page content will be rendered) -->
+        <%- body %>
 
-                    <!-- Include the footer partial -->
-                    <%- include('_footer'); %>
 </body>
 
 </html>

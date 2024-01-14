@@ -25,7 +25,11 @@ const userSchema = new mongoose.Schema({
     emergencyNumber: {
         type: Number,
         required: true
-    }
+    },
+    medicinePlan: {
+        type: [String], // Array of times, e.g., ['08:00', '12:00', '19:00']
+        default: [],
+    },
 },
     {
         timestamps: true

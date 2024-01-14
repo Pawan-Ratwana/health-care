@@ -12,8 +12,8 @@ module.exports.profile = async (req, res) => {
             // if user is found then redirect to the profile
             if (user) {
                 return res.render('user_profile', {
-                    title: "User Profile",
-                    user: user
+                    title: user.name,
+                    user: user.name
                 });
             }
 
@@ -34,15 +34,21 @@ module.exports.profile = async (req, res) => {
 
 // Controller method for rendering the sign-up page
 module.exports.signUp = (req, res) => {
+    const user = req.session.user;
     return res.render('user_signUp', {
-        title: "Sign-Up"
+        title: "Sign-Up",
+        user: user
     });
 };
 
 // Controller method for rendering the sign-in page
 module.exports.signIn = (req, res) => {
+    const user = req.session.user;
+    // console.log(user.name)
     return res.render('user_signIn', {
-        title: "Sign In"
+        title: "Sign In",
+        user: user,
+        successfull: "Sign In Successfull"
     });
 };
 
@@ -91,7 +97,7 @@ module.exports.createSession = async (req, res) => {
             // handle session creation
             res.cookie('user_id', user.id);
             req.flash('success', 'Logged in successfully');
-            return res.redirect('/users/profile');
+            return res.redirect('/users/profile/');
         } else {
             req.flash('error', 'User not found');
             return res.redirect('back');
@@ -108,3 +114,63 @@ module.exports.signOut = (req, res) => {
     res.clearCookie('user_id');
     return res.redirect('/')
 }
+
+
+
+
+// Method to handle blood pressure submission
+module.exports.submitBloodPressure = async (req, res) => {
+    try {
+        const { systolic, diastolic } = req.body;
+
+        // Validate and process blood pressure data
+        if (!systolic || !diastolic) {
+            console.log('errorMessage', 'Please enter both systolic and diastolic pressure values.');
+            req.flash('errorMessage', 'Please enter both systolic and diastolic pressure values.');
+            return res.redirect('/users/profile');
+        }
+
+        // Suggest medicine based on blood pressure
+        const medicine = suggestMedicine(parseInt(systolic), parseInt(diastolic));
+
+        // Display success message or redirect back to profile page
+        // console.log('successMessage', `Blood pressure submitted successfully. Suggested medicine: ${medicine}`);
+        // req.flash('successMessage', `Blood pressure submitted successfully. Suggested medicine: ${medicine}`);
+
+        // Display success message or redirect back to profile page
+        const bloodPressureData = { systolic, diastolic };
+
+        res.render('user_profile', {
+            title: 'User Profile',
+            user: req.user,
+            successMessage: req.flash('successMessage'),
+            bloodPressure: bloodPressureData,
+            suggestedMedicine: medicine,
+        });
+
+    } catch (error) {
+        console.error('Error submitting blood pressure:', error);
+        // Display error message or redirect back to profile page with an error
+
+        req.flash('errorMessage', 'Error submitting blood pressure. Please try again.');
+        res.redirect('/users/profile');
+    }
+};
+
+// Function to suggest medicine based on blood pressure
+function suggestMedicine(systolic, diastolic) {
+    // Simple example: Check blood pressure range and suggest medicine
+    if (systolic < 120 && diastolic < 80) {
+        return 'No specific medicine suggested. Your blood pressure is normal.';
+    } else if (systolic >= 120 && systolic <= 129 && diastolic < 80) {
+        return 'Consider lifestyle changes; no medication required.';
+    } else if ((systolic >= 130 && systolic <= 139) || (diastolic >= 80 && diastolic <= 89)) {
+        return 'Consult a healthcare professional for further evaluation.';
+    } else {
+        return 'Consult a healthcare professional for personalized advice.';
+    }
+}
+
+
+
+module.exports.suggestMedicine = suggestMedicine;
